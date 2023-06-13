@@ -1,5 +1,6 @@
 image: node:18.16.0-slim
 stages:
+  - prepare
   - build
   - test
 
@@ -10,8 +11,11 @@ stages:
     expire_in: never
 
 dependencies-pulling:
-  stage: .pre
+  stage: prepare
   extends: .common
+  cache:
+    paths:
+      - node_modules
   script:
     - yarn install
   artifacts:
