@@ -1,0 +1,19 @@
+# Junk
+.vscode/
+dist/
+.idea
+.nbproject
+node_modules
+npm-debug.log
+
+reports/
+coverage/
+test-results.xml
+junit.xml
+
+eslint.txt
+package-lock.json
+yarn.lock
+yarn-error.log
+npm-debug.log
+build-storybook/

@@ -1,0 +1,43 @@
+image: node:18.16.0-slim
+stages:
+  - build
+  - test
+
+.common:
+  tags:
+    - shared
+  artifacts:
+    expire_in: never
+
+dependencies-pulling:
+  stage: .pre
+  extends: .common
+  script:
+    - yarn install
+  artifacts:
+    paths:
+      - node_modules/
+
+build:
+  stage: build
+  extends: .common
+  dependencies:
+    - dependencies-pulling
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - dist/
+
+tests:
+  stage: test
+  extends: .common
+  dependencies:
+    - dependencies-pulling
+  script:
+    - yarn test
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - junit.xml
