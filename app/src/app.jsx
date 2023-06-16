@@ -1,15 +1,26 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 
 import './styles/global.scss';
+import PopularMoviesContainers from 'App/src/presentation/containers/PopularMoviesContainers';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import MovieDetails from 'App/src/presentation/components/MovieDetail';
+import Layout from 'App/src/presentation/components/Layout';
 
 const App = () => {
   return (
-    <>
-      <div>Hello World !</div>
-      <div>Let's do a nice looking app :)</div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/m/:id" element={<MovieDetails />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
-export default process.env.BUILD_FLAG_IS_DEV ? hot(App) : App;
+const Home = () => {
+  return <PopularMoviesContainers />;
+};
+
+export default App;

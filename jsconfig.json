@@ -2,11 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // Main App
       "App/*": [
         "./app/*"
-      ],
-    },
+      ]
+    }
   },
   "exclude": [
     "dist",
