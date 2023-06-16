@@ -1,15 +1,17 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Movie = ({ movie }) => {
+  const navigate = useNavigate();
 
+  const handleNav = () => {
+  navigate(`/m/${movie.id}`);
+  };
 
   return (
-    <div className="movie">
+    <div className="movie" onClick={handleNav}>
       <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
       <h2>{movie.title}</h2>
-      <p>{movie.release_date}</p>
-      <Link to={`/m/${movie.id}`}>See details</Link>
     </div>
   );
 };

@@ -10,4 +10,12 @@ const fetchPopularMovies = async () => {
   }
 };
 
-export default { fetchPopularMovies };
+const fetchMovieDetails = async (movieId) => {
+  try {
+    return await tmdbService.fetchMovieDetails(movieId);
+  } catch (error) {
+    throw new Error('Failed to fetch movie details from the TMDB API.');
+  }
+}
+
+export default { fetchPopularMovies, fetchMovieDetails };

@@ -12,9 +12,9 @@ const Layout = () => {
 
 const Header = () => {
   return (
-    <>
-      <h1>Header</h1>
-    </>
+    <div className="header">
+      <h1>mouvizz</h1>
+    </div>
   );
 };
 export default Layout;
