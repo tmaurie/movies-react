@@ -4,11 +4,12 @@ import { API_KEY } from "App/constants";
 const API_BASE_URL = "https://api.themoviedb.org/3";
 
 const tmdbService = {
-  fetchPopularMovies: async () => {
+  fetchPopularMovies: async (page) => {
     try {
       const response = await axios.get(`${API_BASE_URL}/movie/popular`, {
         params: {
-          api_key: API_KEY
+          api_key: API_KEY,
+          page: page
         }
       });
       return response.data;
