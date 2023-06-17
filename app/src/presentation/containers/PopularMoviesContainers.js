@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import fetchPopularMovies from "App/src/core/usecases/popularMovies";
 import MovieList from "../components/MovieList";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Movie from "App/src/presentation/components/Movie";
 
 const PopularMoviesContainer = () => {
   const [movies, setMovies] = useState([]);
@@ -46,7 +49,12 @@ const PopularMoviesContainer = () => {
   }
 
   return (<>
-    <MovieList movies={movies} loadMore={loadMore} showButton={showLoadMore} />
+    <Carousel className="carousel" showThumbs={false} autoPlay={true} interval={5000} showArrows={true} infiniteLoop={true} showStatus={false}>
+      {movies.slice(0, 5).map((movie) => (
+        <Movie key={movie.id} movie={movie} />
+      ))}
+    </Carousel>
+    <MovieList movies={movies.slice(5)} loadMore={loadMore} showButton={showLoadMore} />
 
   </>);
 };
