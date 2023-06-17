@@ -93,6 +93,7 @@ html, body {
   align-items: center;
 
   & > img {
+    filter: saturate(50%);
     width: 300px;
     height: auto;
     box-shadow: 9px 9px 0 0 rgb(255, 221, 210);
@@ -129,4 +130,28 @@ html, body {
     color: #ffddd2;
     text-align: justify;
   }
+}
+
+.load-more {
+  width: 100px;
+  border: 1px solid #ffddd2;
+  padding: 12px;
+  margin: 12px auto;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 9px 9px 0 0 rgb(255, 221, 210);
+  }
+}
+
+.genre {
+  margin: 0 5px;
+  padding: 5px;
+  border: 1px solid #ffddd2;
+  font-size: 12px;
+  color: #ffddd2;
+  box-shadow: 1px 1px 0 0 rgb(255, 221, 210);
+
 }

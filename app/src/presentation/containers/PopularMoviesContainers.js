@@ -7,6 +7,8 @@ const PopularMoviesContainer = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showLoadMore, setShowLoadMore] = useState(true);
+
   const fetchData = async () => {
     try {
       const fetchedMovies = await fetchPopularMovies(page);
@@ -23,8 +25,17 @@ const PopularMoviesContainer = () => {
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
+    setShowLoadMore(false);
   };
 
+  useEffect(() => {
+    if (showLoadMore) return;
+    window.onscroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+        loadMore();
+      }
+    };
+  }, [showLoadMore]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -35,7 +46,7 @@ const PopularMoviesContainer = () => {
   }
 
   return (<>
-    <MovieList movies={movies} loadMore={loadMore} />
+    <MovieList movies={movies} loadMore={loadMore} showButton={showLoadMore} />
 
   </>);
 };
