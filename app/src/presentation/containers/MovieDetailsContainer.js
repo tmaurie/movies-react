@@ -25,6 +25,7 @@ const MovieDetailsContainer = () => {
     return <div>Loading movie details...</div>;
   }
 
+
   return (
     <MovieDetails movieDetails={movieDetails} />
   );

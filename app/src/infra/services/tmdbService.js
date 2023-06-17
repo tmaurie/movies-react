@@ -28,6 +28,19 @@ const tmdbService = {
     } catch (error) {
       throw new Error("Failed to fetch movie details from the TMDB API.");
     }
+  },
+
+  fetchMovieCredits: async (movieId) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/movie/${movieId}/credits`, {
+        params: {
+          api_key: API_KEY
+        }
+      });
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to fetch movie credits from the TMDB API.");
+    }
   }
 };
 

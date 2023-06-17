@@ -11,7 +11,7 @@ const Movie = ({ movie }) => {
   return (
     <div className="movie" onClick={handleNav}>
       <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
-      <h2>{movie.title}</h2>
+      <span>{movie.title}</span>
     </div>
   );
 };
