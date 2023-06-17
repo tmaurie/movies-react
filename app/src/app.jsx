@@ -5,6 +5,7 @@ import PopularMoviesContainers from "App/src/presentation/containers/PopularMovi
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MovieDetailsContainer from "App/src/presentation/containers/MovieDetailsContainer";
 import Layout from "App/src/presentation/containers/Layout";
+import SearchContainer from "App/src/presentation/containers/SearchContainer";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/m/:id" element={<MovieDetailsContainer />} />
+          <Route path="/search" element={<SearchContainer />} />
         </Route>
       </Routes>
     </BrowserRouter>

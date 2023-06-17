@@ -20,7 +20,7 @@ const MovieDetails = (props) => {
   return (<div>
     <div className="movie-details-container center">
       <div className="poster-container">
-        <img src={`https://image.tmdb.org/t/p/w400${props.movieDetails.poster_path}`}
+        <img src={`https://image.tmdb.org/t/p/original${props.movieDetails.poster_path}`}
              alt={props.movieDetails.title} />
       </div>
       <div className="content-container content-card">

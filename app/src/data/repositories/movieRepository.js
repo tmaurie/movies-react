@@ -25,4 +25,13 @@ const fetchMovieCredits = async (movieId) => {
   }
 };
 
-export default { fetchPopularMovies, fetchMovieDetails, fetchMovieCredits };
+const searchMovies = async (query) => {
+  try {
+    const response = await tmdbService.searchMovies(query);
+    return response.results;
+  } catch (error) {
+    throw new Error("Failed to fetch movie credits from the TMDB API.");
+  }
+};
+
+export default { fetchPopularMovies, fetchMovieDetails, fetchMovieCredits, searchMovies };
