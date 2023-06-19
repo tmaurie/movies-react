@@ -7,6 +7,7 @@ $primary-color: #16293c;
 $secondary-color: #e2e381;
 
 html, body {
+  text-transform: lowercase;
   margin: 0;
   background-color: $primary-color;
   color: $secondary-color;
@@ -71,16 +72,7 @@ html, body {
   }
 }
 
-.carousel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-  max-width: 400px;
-  padding: 12px;
 
-}
 .movie {
   flex: 20%;
   display: flex;
@@ -256,5 +248,32 @@ html, body {
   &:focus {
     outline: none;
     box-shadow: 9px 9px 0 0 $secondary-color;
+  }
+}
+
+.movie-list-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 1200px;
+
+  &__item {
+    margin: 0 10px;
+    padding: 5px;
+    border: 2px solid $secondary-color;
+    box-shadow: 1px 1px 0 0 $secondary-color;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 9px 9px 0 0 $secondary-color;
+    }
+  }
+
+  & .selected {
+    box-shadow: 4px 4px 0 0 $secondary-color;
+
+
   }
 }
