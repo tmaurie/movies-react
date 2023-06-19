@@ -12,7 +12,9 @@ const MovieList = ({ movies, loadMore, showButton }) => {
     <div className="movie-container">
       <div className="movie-list">
         {movies.map((movie) => (<Movie key={movie.id} movie={movie} />))}
-        {showButton && (<Button onClick={loadMore} />)}
+      </div>
+      <div className="button-container">
+        {showButton && <Button onClick={loadMore} />}
       </div>
     </div>);
 };
