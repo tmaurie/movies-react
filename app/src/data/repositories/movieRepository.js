@@ -1,8 +1,8 @@
 import tmdbService from "App/src/infra/services/tmdbService";
 
-const fetchMoviesByType = async (page, type) => {
+const fetchMoviesByType = async (page, type, lang) => {
   try {
-    const response = await tmdbService.fetchMoviesByType(page, type);
+    const response = await tmdbService.fetchMoviesByType(page, type, lang);
     return response.results;
   } catch (error) {
     throw new Error("Failed to fetch popular movies from the TMDB API.");

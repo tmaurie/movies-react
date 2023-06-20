@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import fetchMoviesByType from "App/src/core/usecases/moviesByType";
 import MovieList from "../components/MovieList";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Movie from "App/src/presentation/components/Movie";
+import dictionary from "App/src/languages/dictionary";
+import { LanguageContext } from "App/src/presentation/context/LanguageContext";
 
 const MovieTypeContainer = () => {
   const [movies, setMovies] = useState([]);
@@ -11,17 +12,23 @@ const MovieTypeContainer = () => {
   const [error, setError] = useState(null);
   const [showLoadMore, setShowLoadMore] = useState(true);
   const [movieListType, setMovieListType] = useState("popular");
+  const { language } = useContext(LanguageContext);
+  const translations = dictionary[language];
 
   const movieListTypes = [
-    { type: "popular", label: "popular" },
-    { type: "top_rated", label: "top rated" },
-    { type: "upcoming", label: "upcoming" },
-    { type: "now_playing", label: "now playing" }
+    { type: "popular", label: translations.popular },
+    { type: "top_rated", label: translations.top_rated },
+    { type: "upcoming", label: translations.upcoming },
+    { type: "now_playing", label: translations.now_playing }
   ];
   const fetchData = async () => {
     try {
-      const fetchedMovies = await fetchMoviesByType(page, movieListType);
-      setMovies((prevMovies) => [...prevMovies, ...fetchedMovies]);
+      const fetchedMovies = await fetchMoviesByType(page, movieListType, translations.lang_param);
+      setMovies((prevMovies) => {
+        const uniqueMovieIds = new Set(prevMovies.map((movie) => movie.id));
+        const filteredMovies = fetchedMovies.filter((movie) => !uniqueMovieIds.has(movie.id));
+        return [...prevMovies, ...filteredMovies];
+      });
       setLoading(false);
     } catch (error) {
       setError(error.message);
@@ -29,11 +36,13 @@ const MovieTypeContainer = () => {
     }
   };
 
+
+
   useEffect(() => {
     setMovies([]);
     setPage(1);
     fetchData();
-  }, [movieListType]);
+  }, [movieListType, language]);
 
   useEffect(() => {
     fetchData();
