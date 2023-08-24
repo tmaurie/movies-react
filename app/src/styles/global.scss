@@ -89,7 +89,7 @@ html, body {
   img {
     filter: grayscale(100%);
     width: 200px;
-    height: auto;
+    aspect-ratio: 2/3;
     transition: all 0.3s ease-in-out;
 
     &:hover {
@@ -273,7 +273,5 @@ html, body {
 
   & .selected {
     box-shadow: 4px 4px 0 0 $secondary-color;
-
-
   }
 }
