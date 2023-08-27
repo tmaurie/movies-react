@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import searchMovies from "App/src/core/usecases/searchMovies";
 import MovieList from "App/src/presentation/components/MovieList";
+import { LanguageContext } from "App/src/presentation/context/LanguageContext";
+import dictionary from "App/src/languages/dictionary";
 
 const SearchContainer = () => {
+  const { language } = useContext(LanguageContext);
+  const translations = dictionary[language];
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
 
@@ -31,7 +35,7 @@ const SearchContainer = () => {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search movies..."
+          placeholder={translations.search_content}
         />
       </div>
       <MovieList movies={movies} />
