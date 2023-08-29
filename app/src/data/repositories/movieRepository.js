@@ -9,9 +9,9 @@ const fetchMoviesByType = async (page, type, lang) => {
   }
 };
 
-const fetchMovieDetails = async (movieId) => {
+const fetchMovieDetails = async (movieId, lang) => {
   try {
-    return await tmdbService.fetchMovieDetails(movieId);
+    return await tmdbService.fetchMovieDetails(movieId, lang);
   } catch (error) {
     throw new Error("Failed to fetch movie details from the TMDB API.");
   }
