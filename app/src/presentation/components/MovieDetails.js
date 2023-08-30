@@ -1,6 +1,8 @@
-import React from "react";
-import MovieCreditsContainer from "App/src/presentation/containers/MovieCreditsContainer";
+import React, { useContext } from "react";
 import * as PropTypes from "prop-types";
+import MovieCredits from "App/src/presentation/components/MovieCredits";
+import { LanguageContext } from "App/src/presentation/context/LanguageContext";
+import dictionary from "App/src/languages/dictionary";
 
 
 function Genre(props) {
@@ -10,6 +12,8 @@ function Genre(props) {
 Genre.propTypes = { genre: PropTypes.any };
 const MovieDetails = (props) => {
 
+  const { language } = useContext(LanguageContext);
+  const translations = dictionary[language];
   function getRuntime(time) {
 
     let hours = Math.floor(time / 60);
@@ -26,16 +30,16 @@ const MovieDetails = (props) => {
       <div className="content-container content-card">
 
         <h1>{props.movieDetails.title}</h1>
-        <p> {new Date(props.movieDetails.release_date).toLocaleDateString("en-US", {
+        <p> {new Date(props.movieDetails.release_date).toLocaleDateString(translations.lang_param, {
           year: "numeric", month: "long", day: "numeric"
         })} ({props.movieDetails.status})</p>
         <p> {props.movieDetails.genres.map((genre) => (<Genre key={genre.id} genre={genre} />))}</p>
 
         <p> {props.movieDetails.overview}</p>
-        <p>Duration: {getRuntime(props.movieDetails.runtime)}</p>
+        <p>{translations.duration} : {getRuntime(props.movieDetails.runtime)}</p>
       </div>
     </div>
-    <MovieCreditsContainer />
+    <MovieCredits credits={props.movieDetails.credits} />
   </div>);
 };
 
