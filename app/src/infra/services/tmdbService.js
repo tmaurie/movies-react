@@ -18,11 +18,13 @@ const tmdbService = {
     }
   },
 
-  fetchMovieDetails: async (movieId) => {
+  fetchMovieDetails: async (movieId, lang) => {
     try {
       const response = await axios.get(`${API_BASE_URL}/movie/${movieId}`, {
         params: {
-          api_key: API_KEY
+          api_key: API_KEY,
+          language: lang,
+          append_to_response: 'credits'
         }
       });
       return response.data;
